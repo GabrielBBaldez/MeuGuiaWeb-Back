@@ -31,8 +31,6 @@ public class RoteiroController {
     @PostMapping
     public String creatRoteiro(@RequestBody DadosCadastroRoteiro dadosCadastroRoteiro){
         Roteiro roteiro = roteiroService.createRoteiro(new Roteiro(dadosCadastroRoteiro));
-        return "Roteiro salvo com sucesso " + roteiro.toString();
+        return "Roteiro salvo com sucesso ";
     }
-
-
 }

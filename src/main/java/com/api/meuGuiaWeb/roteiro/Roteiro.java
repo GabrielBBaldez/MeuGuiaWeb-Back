@@ -1,30 +1,45 @@
 package com.api.meuGuiaWeb.roteiro;
 
+import com.api.meuGuiaWeb.programacao.Programacao;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roteiro", schema = "public")
-@Data
+@Getter
+@Setter
 public class Roteiro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
+    @Column(name = "data_partida")
     private LocalDate dataPartida;
+
+    @Column(name = "data_chegada")
     private LocalDate dataChegada;
+
+    @Column(name = "nome_roteiro")
     private String nomeRoteiro;
+
+    @Column(name = "atracoes", columnDefinition = "text")
     private String atracoes;
+
+    @Column(name = "descricao", columnDefinition = "text")
     private String descricao;
+
+    @Column(name = "url_imagem", columnDefinition = "text")
     private String urlImagem;
-    private LocalDate diaUm;
-    private String localUm;
-    private String descricaoDiaUm;
+
+    @OneToMany(mappedBy = "roteiro")
+    private List<Programacao> programacaoList;
 
     //Usar anotação Spring Beanconverter
     public Roteiro ( DadosCadastroRoteiro dadosCadastroRoteiro){
@@ -35,8 +50,10 @@ public class Roteiro {
         this.atracoes = dadosCadastroRoteiro.atracoes();
         this.descricao = dadosCadastroRoteiro.descricao();
         this.urlImagem = dadosCadastroRoteiro.urlImagem();
-        this.diaUm = dadosCadastroRoteiro.diaUm();
-        this.localUm = dadosCadastroRoteiro.localUm();
-        this.descricaoDiaUm = dadosCadastroRoteiro.descricaoDiaUm();
+        this.programacaoList = dadosCadastroRoteiro.listaDeDias()
+                .stream()
+                .map(dadosCadastroProgramacao -> new Programacao(dadosCadastroProgramacao))
+                .collect(Collectors.toList());
+
     }
 }

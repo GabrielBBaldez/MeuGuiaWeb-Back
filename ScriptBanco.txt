@@ -1,0 +1,19 @@
+CREATE TABLE public.roteiro (
+    id serial4 NOT NULL,
+    data_partida date NULL,
+    data_chegada date NULL,
+    nome_roteiro varchar(255) NULL,
+    atracoes text NULL,
+    descricao text NULL,
+    url_imagem text NULL,
+    CONSTRAINT roteiro_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.programacao (
+    id serial4 NOT NULL,
+    id_roteiro serial4 NOT NULL,
+    sequencial_dia serial4 NOT NULL,
+    atividade text NULL,
+    local_dia varchar(255) NULL,
+    CONSTRAINT programacao_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_roteiro FOREIGN KEY (id_roteiro) REFERENCES public.roteiro(id) on delete cascade
+);

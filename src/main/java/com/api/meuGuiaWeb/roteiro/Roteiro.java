@@ -1,6 +1,7 @@
 package com.api.meuGuiaWeb.roteiro;
 
 import com.api.meuGuiaWeb.programacao.Programacao;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +19,7 @@ public class Roteiro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "data_partida")
     private LocalDate dataPartida;
@@ -39,6 +40,7 @@ public class Roteiro {
     private String urlImagem;
 
     @OneToMany(mappedBy = "roteiro")
+    @JsonManagedReference
     private List<Programacao> programacaoList;
 
     //Usar anotação Spring Beanconverter
@@ -52,7 +54,7 @@ public class Roteiro {
         this.urlImagem = dadosCadastroRoteiro.urlImagem();
         this.programacaoList = dadosCadastroRoteiro.listaDeDias()
                 .stream()
-                .map(dadosCadastroProgramacao -> new Programacao(dadosCadastroProgramacao))
+                .map(Programacao::new)
                 .collect(Collectors.toList());
 
     }

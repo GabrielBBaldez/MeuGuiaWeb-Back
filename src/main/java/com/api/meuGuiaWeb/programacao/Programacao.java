@@ -1,6 +1,7 @@
 package com.api.meuGuiaWeb.programacao;
 
 import com.api.meuGuiaWeb.roteiro.Roteiro;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Programacao {
     private Long id;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "id_roteiro", referencedColumnName = "id")
     private Roteiro roteiro;
 

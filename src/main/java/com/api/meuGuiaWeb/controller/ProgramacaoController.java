@@ -1,4 +1,4 @@
-package com.api.meuGuiaWeb.controler;
+package com.api.meuGuiaWeb.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -17,3 +17,13 @@ CREATE TABLE public.programacao (
     CONSTRAINT programacao_pkey PRIMARY KEY (id),
     CONSTRAINT fk_roteiro FOREIGN KEY (id_roteiro) REFERENCES public.roteiro(id) on delete cascade
 );
+CREATE TABLE public.cliente (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(255),
+    profissao VARCHAR(255),
+    telefone VARCHAR(20),
+    email VARCHAR(255),
+    cidade VARCHAR(255),
+    estado VARCHAR(2),
+    observacoes TEXT
+);

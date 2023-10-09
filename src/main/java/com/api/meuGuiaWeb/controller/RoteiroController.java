@@ -1,4 +1,4 @@
-package com.api.meuGuiaWeb.controler;
+package com.api.meuGuiaWeb.controller;
 
 import com.api.meuGuiaWeb.roteiro.DadosCadastroRoteiro;
 import com.api.meuGuiaWeb.roteiro.Roteiro;

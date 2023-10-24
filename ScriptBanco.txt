@@ -27,3 +27,11 @@ CREATE TABLE public.cliente (
     estado VARCHAR(2),
     observacoes TEXT
 );
+
+CREATE TABLE public.usuario(
+   id SERIAL PRIMARY KEY,
+   nome VARCHAR(255),
+   senha VARCHAR(255),
+   email VARCHAR(255),
+   token VARCHAR(255)
+);

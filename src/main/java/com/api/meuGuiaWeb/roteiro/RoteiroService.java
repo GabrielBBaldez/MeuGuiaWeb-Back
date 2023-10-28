@@ -84,6 +84,21 @@ public class RoteiroService {
         }
     }
 
+    public Roteiro updateLotacao(Long id, boolean lotado) {
+        try {
+            Optional<Roteiro> existingRoteiro = roteiroRepository.findById(id);
+            if (existingRoteiro.isPresent()) {
+                Roteiro roteiro = existingRoteiro.get();
+                roteiro.setLotado(lotado);
+                return roteiroRepository.save(roteiro);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return null;
+    }
+
     private static void updateProgramacaoAlreadyExisting(DadosCadastroProgramacao novaProgramacao, Map<Integer, Programacao> existingProgramacaoMap, int sequencialDia) {
         Programacao existingProgramacao = existingProgramacaoMap.get(sequencialDia);
         existingProgramacao.setAtividade(novaProgramacao.atividade());

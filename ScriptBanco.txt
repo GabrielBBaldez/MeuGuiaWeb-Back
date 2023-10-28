@@ -1,12 +1,13 @@
 CREATE TABLE public.roteiro (
-    id serial4 NOT NULL,
-    data_partida date NULL,
-    data_chegada date NULL,
-    nome_roteiro varchar(255) NULL,
-    atracoes text NULL,
-    descricao text NULL,
-    url_imagem text NULL,
-    CONSTRAINT roteiro_pkey PRIMARY KEY (id)
+	id serial4 NOT NULL,
+	data_partida date NULL,
+	data_chegada date NULL,
+	nome_roteiro varchar(255) NULL,
+	atracoes text NULL,
+	descricao text NULL,
+	url_imagem text NULL,
+	lotado bool NULL DEFAULT false,
+	CONSTRAINT roteiro_pkey PRIMARY KEY (id)
 );
 CREATE TABLE public.programacao (
     id serial4 NOT NULL,

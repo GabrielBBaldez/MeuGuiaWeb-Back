@@ -63,5 +63,15 @@ public class RoteiroController {
             return new ResponseEntity<>("Roteiro não encontrado ou não pôde ser atualizado.", HttpStatus.NOT_FOUND);
         }
     }
+
+    @PutMapping("/{lotacao}/{id}")
+    public ResponseEntity<String> updateLotacao(@PathVariable("id") Long id, @PathVariable("lotacao") boolean lotacao){
+        Roteiro roteiro = roteiroService.updateLotacao(id,lotacao);
+        if (roteiro != null) {
+            return new ResponseEntity<>("Lotacao atualizado com sucesso.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Lotacao não encontrado ou não pôde ser atualizado.", HttpStatus.NOT_FOUND);
+        }
+    }
 }
 

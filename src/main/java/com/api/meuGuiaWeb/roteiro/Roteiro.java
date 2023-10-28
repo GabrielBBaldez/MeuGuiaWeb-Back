@@ -43,6 +43,9 @@ public class Roteiro {
     @JsonManagedReference
     private List<Programacao> programacaoList;
 
+    @Column(nullable = false)
+    private boolean lotado = false;
+
     //Usar anotação Spring Beanconverter
     public Roteiro ( DadosCadastroRoteiro dadosCadastroRoteiro){
 
